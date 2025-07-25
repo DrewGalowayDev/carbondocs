@@ -226,6 +226,7 @@
             padding: 8px;
             border-radius: 6px;
             transition: background-color 0.2s;
+            z-index: 1101;
         }
         
         .mobile-menu-toggle:hover {
@@ -630,6 +631,15 @@
             .sidebar.sidebar-active + .sidebar-overlay {
                 display: block;
             }
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 16px;
+                left: 16px;
+                z-index: 1101;
+                background: #fff;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            }
             .main-content {
                 margin-left: 0;
                 width: 100vw;
@@ -646,9 +656,6 @@
             .header-left {
                 width: 100%;
                 justify-content: space-between;
-            }
-            .mobile-menu-toggle {
-                display: block;
             }
             .header-title {
                 font-size: 22px;
