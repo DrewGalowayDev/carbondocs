@@ -744,7 +744,8 @@
     </style>
 </head>
 <body>
-  <div class="sidebar">
+  <button class="mobile-menu-toggle" id="sidebarToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+  <div class="sidebar" id="sidebar">
     <div class="logo">
       <div class="logo-icon">🌱</div>
       <div class="logo-text">CarbonDocs</div>
@@ -805,7 +806,30 @@
     </div>
   </div>
 
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
   <div class="main-content">
+    // Sidebar mobile toggle logic
+    document.addEventListener('DOMContentLoaded', function() {
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      var toggle = document.getElementById('sidebarToggle');
+      function openSidebar() {
+        sidebar.classList.add('sidebar-active');
+        overlay.style.display = 'block';
+      }
+      function closeSidebar() {
+        sidebar.classList.remove('sidebar-active');
+        overlay.style.display = 'none';
+      }
+      toggle.addEventListener('click', openSidebar);
+      overlay.addEventListener('click', closeSidebar);
+      // Hide sidebar on resize if desktop
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+          closeSidebar();
+        }
+      });
+    });
     <div class="header">
       <h1 class="header-title">Carbon Credit Platform API Documentation</h1>
       <div class="search-box">
