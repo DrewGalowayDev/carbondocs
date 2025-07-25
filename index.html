@@ -598,87 +598,98 @@
         }
         
         @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
             .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 80vw;
+                max-width: 320px;
+                min-width: 220px;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
+                z-index: 1000;
             }
-            
             .sidebar.sidebar-active {
                 transform: translateX(0);
                 box-shadow: 5px 0 15px rgba(0,0,0,0.1);
             }
-            
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.5);
+                z-index: 999;
+            }
+            .sidebar.sidebar-active + .sidebar-overlay {
+                display: block;
+            }
             .main-content {
                 margin-left: 0;
-                padding: 15px;
+                width: 100vw;
+                max-width: 100vw;
+                padding: 10px 4vw;
+                box-sizing: border-box;
             }
-            
             .header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 15px;
-                padding: 15px;
+                gap: 10px;
+                padding: 10px 0;
             }
-            
             .header-left {
                 width: 100%;
                 justify-content: space-between;
             }
-            
             .mobile-menu-toggle {
                 display: block;
             }
-            
             .header-title {
-                font-size: 24px;
+                font-size: 22px;
             }
-            
             .search-box {
                 width: 100%;
             }
-            
-            .feature-grid {
+            .feature-grid, .stats-grid {
                 grid-template-columns: 1fr;
+                overflow-x: auto;
+                gap: 12px;
             }
-            
             .content-card {
-                padding: 20px;
+                padding: 12px;
+                margin-bottom: 18px;
             }
-            
             .card-title {
-                font-size: 20px;
-            }
-            
-            .card-subtitle {
-                font-size: 15px;
-            }
-            
-            .section-title {
                 font-size: 18px;
             }
-            
-            .section-content {
-                font-size: 15px;
-            }
-            
-            .endpoint-body {
-                padding: 15px;
-            }
-            
-            .param-table th, 
-            .param-table td {
-                padding: 10px 12px;
+            .card-subtitle {
                 font-size: 14px;
             }
-            
-            .code-block {
-                padding: 15px;
-                font-size: 13px;
+            .section-title {
+                font-size: 16px;
             }
-            
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
+            .section-content {
+                font-size: 14px;
+            }
+            .endpoint-body {
+                padding: 10px;
+            }
+            .param-table th, .param-table td {
+                padding: 8px 8px;
+                font-size: 12px;
+            }
+            .code-block {
+                padding: 8px;
+                font-size: 12px;
+            }
+            .feature-card, .stat-card {
+                min-width: 180px;
             }
         }
         
@@ -808,28 +819,6 @@
 
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
   <div class="main-content">
-    // Sidebar mobile toggle logic
-    document.addEventListener('DOMContentLoaded', function() {
-      var sidebar = document.getElementById('sidebar');
-      var overlay = document.getElementById('sidebarOverlay');
-      var toggle = document.getElementById('sidebarToggle');
-      function openSidebar() {
-        sidebar.classList.add('sidebar-active');
-        overlay.style.display = 'block';
-      }
-      function closeSidebar() {
-        sidebar.classList.remove('sidebar-active');
-        overlay.style.display = 'none';
-      }
-      toggle.addEventListener('click', openSidebar);
-      overlay.addEventListener('click', closeSidebar);
-      // Hide sidebar on resize if desktop
-      window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-          closeSidebar();
-        }
-      });
-    });
     <div class="header">
       <h1 class="header-title">Carbon Credit Platform API Documentation</h1>
       <div class="search-box">
@@ -3531,7 +3520,31 @@ GET /v1/marketplace/browse?region=Kenya&methodology=VCS-VM0017&minPrice=20&maxPr
           </div>
         </div>
       </div>
-
+       <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('sidebar-active');
+            });
+            
+            overlay.addEventListener('click', function() {
+                sidebar.classList.remove('sidebar-active');
+            });
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768 && 
+                    !sidebar.contains(event.target) && 
+                    event.target !== menuToggle &&
+                    !menuToggle.contains(event.target)) {
+                    sidebar.classList.remove('sidebar-active');
+                }
+            });
+        });
+    </script>
       <script>
         function toggleFAQ(faqId) {
           const content = document.getElementById(faqId);
@@ -3814,5 +3827,30 @@ GET /v1/marketplace/browse?region=Kenya&methodology=VCS-VM0017&minPrice=20&maxPr
 </footer>
 <!-- Footer End -->
 
+</body>
+  <!-- Sidebar mobile toggle logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      var toggle = document.getElementById('sidebarToggle');
+      function openSidebar() {
+        sidebar.classList.add('sidebar-active');
+        overlay.style.display = 'block';
+      }
+      function closeSidebar() {
+        sidebar.classList.remove('sidebar-active');
+        overlay.style.display = 'none';
+      }
+      toggle.addEventListener('click', openSidebar);
+      overlay.addEventListener('click', closeSidebar);
+      // Hide sidebar on resize if desktop
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+          closeSidebar();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
