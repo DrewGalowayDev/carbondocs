@@ -14,7 +14,7 @@
       top: 12px;
       right: 18px;
       background: var(--primary);
-      color: #fff;
+      color: #77b30f;
       border: none;
       border-radius: 6px;
       padding: 6px 12px;
@@ -54,6 +54,72 @@
     });
   </script>
   <style>
+     /* Error Codes Section Modern Styles */
+      .error-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        gap: 22px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .error-card {
+        background: linear-gradient(135deg, #fff 60%, #f8fafc 100%);
+        border: 1.5px solid var(--border);
+        border-radius: 14px;
+        box-shadow: 0 2px 10px rgba(13,148,136,0.06);
+        display: flex;
+        align-items: flex-start;
+        padding: 22px 20px 18px 20px;
+        transition: box-shadow 0.2s;
+        min-height: 140px;
+      }
+      .error-card:hover {
+        box-shadow: 0 4px 18px rgba(13,148,136,0.13);
+        border-color: var(--primary);
+      }
+      .error-icon {
+        font-size: 2.2rem;
+        margin-right: 18px;
+        color: var(--warning);
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .error-info {
+        flex: 1;
+      }
+      .error-code {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 2px;
+      }
+      .error-desc {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 7px;
+      }
+      .error-action {
+        font-size: 1rem;
+        color: var(--secondary);
+        line-height: 1.5;
+      }
+      /* Color accents for each error type */
+      .error-400 .error-icon { color: #f59e42; }
+      .error-401 .error-icon { color: #e53e3e; }
+      .error-403 .error-icon { color: #a78bfa; }
+      .error-404 .error-icon { color: #64748b; }
+      .error-409 .error-icon { color: #fbbf24; }
+      .error-429 .error-icon { color: #f59e42; }
+      .error-500 .error-icon { color: #334155; }
+      @media (max-width: 600px) {
+        .error-grid {
+          grid-template-columns: 1fr;
+        }
+        .error-card {
+          padding: 16px 12px 14px 12px;
+        }
+      }
         :root { 
             --primary: #0d9488; 
             --primary-dark: #0f766e; 
@@ -776,7 +842,7 @@
         <li><a href="#overview" class="sidebar-link"><i class="fas fa-seedling"></i> Platform Overview</a></li>
         <li><a href="#farmer-benefits" class="sidebar-link"><i class="fas fa-hand-holding-usd"></i> Farmer Benefits</a></li>
         <li><a href="#getting-started" class="sidebar-link"><i class="fas fa-play-circle"></i> Getting Started</a></li>
-        <li><a href="#auth" class="sidebar-link"><i class="fas fa-id-badge"></i> Farmer Registration</a></li>
+        <li><a href="#register" class="sidebar-link"><i class="fas fa-id-badge"></i> Farmer Registration</a></li>
       </ul>
     </div>
     
@@ -855,20 +921,20 @@
       
       <div class="stats-grid">
         <div class="stat-card">
-          <span class="stat-number">50,000+</span>
-          <span class="stat-label">Registered Farmers</span>
+          <span class="stat-number">5,000+</span>
+          <span class="stat-label">Expected Farmers Outreach</span>
         </div>
         <div class="stat-card">
-          <span class="stat-number">2.5M</span>
+          <span class="stat-number">0.75M</span>
           <span class="stat-label">Tons CO₂ Sequestered</span>
         </div>
         <div class="stat-card">
-          <span class="stat-number">1.2M</span>
-          <span class="stat-label">Hectares Enrolled</span>
+          <span class="stat-number">0.12M</span>
+          <span class="stat-label">Hectares on Enrollement</span>
         </div>
         <div class="stat-card">
-          <span class="stat-number">$45M</span>
-          <span class="stat-label">Farmer Payments</span>
+          <span class="stat-number">$75,000</span>
+          <span class="stat-label">Output Farmer Payments</span>
         </div>
       </div>
 
@@ -3764,57 +3830,68 @@ GET /v1/marketplace/browse?region=Kenya&methodology=VCS-VM0017&minPrice=20&maxPr
             <input type="number" id="farmSize" placeholder="e.g., 5.5" style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-size: 16px;">
           </div>
           
-          <!-- Removed broken label tag before Error Codes section -->
-    <!-- Error Codes Section Start -->
-    <div id="errors" class="content-card">
-      <h2><i class="fas fa-exclamation-triangle"></i> Error Codes</h2>
-      <p>Below are common error codes returned by the Carbon Credit Platform API, their meanings, and suggested actions.</p>
-      <table class="error-table">
-        <thead>
-          <tr>
-            <th>Error Code</th>
-            <th>Description</th>
-            <th>Suggested Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>400</td>
-            <td>Bad Request</td>
-            <td>Check your request parameters for missing or invalid values.</td>
-          </tr>
-          <tr>
-            <td>401</td>
-            <td>Unauthorized</td>
-            <td>Ensure your API key or token is valid and included in the request.</td>
-          </tr>
-          <tr>
-            <td>403</td>
-            <td>Forbidden</td>
-            <td>Your credentials do not have permission to access this resource.</td>
-          </tr>
-          <tr>
-            <td>404</td>
-            <td>Not Found</td>
-            <td>The requested resource does not exist. Check the endpoint URL.</td>
-          </tr>
-          <tr>
-            <td>409</td>
-            <td>Conflict</td>
-            <td>There is a conflict with the current state of the resource. Review your request logic.</td>
-          </tr>
-          <tr>
-            <td>429</td>
-            <td>Too Many Requests</td>
-            <td>You have exceeded the rate limit. Wait and try again later.</td>
-          </tr>
-          <tr>
-            <td>500</td>
-            <td>Internal Server Error</td>
-            <td>Server encountered an error. Try again or contact support if the issue persists.</td>
-          </tr>
-        </tbody>
-      </table>
+        <!-- Error Codes Section Start -->
+    <div id="errors" class="content-card" style="width: 1200px;">
+      <h2 style="margin-bottom: 10px;"><i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i> Error Codes</h2>
+      <p style="margin-bottom: 25px; color: var(--secondary);">Below are common error codes returned by the Carbon Credit Platform API, their meanings, and suggested actions.</p>
+      <div class="error-grid" >
+        <div class="error-card error-400">
+          <div class="error-icon"><i class="fas fa-times-circle"></i></div>
+          <div class="error-info">
+            <div class="error-code">400</div>
+            <div class="error-desc">Bad Request</div>
+            <div class="error-action">Check your request parameters for missing or invalid values.</div>
+          </div>
+        </div>
+        <div class="error-card error-401">
+          <div class="error-icon"><i class="fas fa-lock"></i></div>
+          <div class="error-info">
+            <div class="error-code">401</div>
+            <div class="error-desc">Unauthorized</div>
+            <div class="error-action">Ensure your API key or token is valid and included in the request.</div>
+          </div>
+        </div>
+        <div class="error-card error-403">
+          <div class="error-icon"><i class="fas fa-ban"></i></div>
+          <div class="error-info">
+            <div class="error-code">403</div>
+            <div class="error-desc">Forbidden</div>
+            <div class="error-action">Your credentials do not have permission to access this resource.</div>
+          </div>
+        </div>
+        <div class="error-card error-404">
+          <div class="error-icon"><i class="fas fa-search"></i></div>
+          <div class="error-info">
+            <div class="error-code">404</div>
+            <div class="error-desc">Not Found</div>
+            <div class="error-action">The requested resource does not exist. Check the endpoint URL.</div>
+          </div>
+        </div>
+        <div class="error-card error-409">
+          <div class="error-icon"><i class="fas fa-exchange-alt"></i></div>
+          <div class="error-info">
+            <div class="error-code">409</div>
+            <div class="error-desc">Conflict</div>
+            <div class="error-action">There is a conflict with the current state of the resource. Review your request logic.</div>
+          </div>
+        </div>
+        <div class="error-card error-429">
+          <div class="error-icon"><i class="fas fa-hourglass-half"></i></div>
+          <div class="error-info">
+            <div class="error-code">429</div>
+            <div class="error-desc">Too Many Requests</div>
+            <div class="error-action">You have exceeded the rate limit. Wait and try again later.</div>
+          </div>
+        </div>
+        <div class="error-card error-500">
+          <div class="error-icon"><i class="fas fa-server"></i></div>
+          <div class="error-info">
+            <div class="error-code">500</div>
+            <div class="error-desc">Internal Server Error</div>
+            <div class="error-action">Server encountered an error. Try again or contact support if the issue persists.</div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Error Codes Section End -->
 <!-- Footer Start -->
