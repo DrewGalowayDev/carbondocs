@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <ti  <title>Greencoin Carbon Credit Platform Documentation - Empowering Climate-Smart Agriculture</title>
+  <title>Greencoin Carbon Credit Platform Documentation - Empowering Climate-Smart Agriculture</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
@@ -831,8 +831,11 @@
   <button class="mobile-menu-toggle" id="sidebarToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
   <div class="sidebar" id="sidebar">
     <div class="logo">
-      <div class="logo-icon">🌱</div>
-      <div class="logo-text">Greencoin CarbonDocs</div>
+    <div class="logo-icon">
+  <img src="logo.png" alt="Greencoin Logo" 
+  style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
+</div>
+      <div class="logo-text">Greencoin Edition</div>
     </div>
     
     <div class="sidebar-section">
@@ -893,8 +896,21 @@
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
   <div class="main-content">
     <div class="header">
-      <h1 class="header-title">Greencoin Carbon Credit Platform API Documentation</h1>
-  </div>
+      <h1 class="header-title">Carbon Credit Platform API Documentation</h1>
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search documentation...">
+      </div>
+    </div>
+
+    <!-- Introduction Section -->
+    <div id="intro" class="content-card">
+      <div class="card-title"><i class="fas fa-home"></i> Introduction</div>
+      <div class="card-subtitle">Comprehensive API for registering farmers, estimating carbon reductions, and issuing tokenized carbon credits on ICP blockchain.</div>
+      <div class="divider"></div>
+      <div class="section-content">
+        Welcome to the Carbon Credit Platform - a revolutionary system that empowers farmers to monetize their climate-smart agricultural practices. This documentation describes endpoints to manage farmer onboarding, carbon MRV (Monitoring, Reporting & Verification), and smart contract interactions for minting and tracking carbon credits.
+      </div>
       <div class="section-content">
         Our platform leverages both direct field sampling and modeling-based MRV, integrated with ICP smart contracts, to transparently reward farmers for climate-smart practices. By combining cutting-edge technology with rigorous scientific standards, we're building a sustainable future for agriculture.
       </div>
@@ -3525,23 +3541,6 @@ GET /v1/marketplace/browse?region=Kenya&methodology=VCS-VM0017&minPrice=20&maxPr
                 </ul>
               </div>
             </div>
-          </div>
-
-          <div style="background: var(--light); padding: 20px; border-bottom: 1px solid var(--border); cursor: pointer;" onclick="toggleFAQ('faq4')">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <h4 style="margin: 0; color: var(--dark);">How long does it take to get paid?</h4>
-              <i id="faq4-icon" class="fas fa-chevron-down" style="color: var(--primary);"></i>
-            </div>
-          </div>
-          <div id="faq4" style="display: none; padding: 20px; background: white;">
-            <p style="margin: 0; line-height: 1.6; color: var(--secondary);">
-              The payment timeline depends on verification requirements:<br><br>
-              <strong>Initial Setup:</strong> 4-6 weeks for registration and baseline measurements<br>
-              <strong>First Payment:</strong> 6-12 months after implementation (varies by practice)<br>
-              <strong>Ongoing Payments:</strong> Annual payments after verification<br>
-              <strong>Marketplace Sales:</strong> 2-14 days after listing credits for sale<br><br>
-              Fast-growing practices like cover crops can generate credits within 6 months, while tree-based systems may take 12-18 months for first payments but offer higher long-term returns.
-            </p>
           </div>
 
           <div style="background: var(--light); padding: 20px; border-bottom: 1px solid var(--border); cursor: pointer;" onclick="toggleFAQ('faq4')">
